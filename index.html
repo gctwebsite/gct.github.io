@@ -65,13 +65,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea id="post-body-input" class="form-control" rows="4" placeholder="Sorununuzu detaylıca açıklayın ve isterseniz link (örn: https://google.com) ekleyin..."></textarea>
+                    <textarea id="post-body-input" class="form-control" rows="4" placeholder="Sorununuzu detaylıca açıklayın..."></textarea>
                 </div>
                 <button class="btn btn-primary" id="submit-post-btn">Konuyu Oluştur</button>
             </div>
 
             <div id="forum-feed">
-                
                 <div class="post-card" data-category="yazilim">
                     <div class="post-header">
                         <div class="user-info">
@@ -84,7 +83,7 @@
                         <button class="mod-btn" onclick="this.closest('.post-card').remove()">Sil</button>
                     </div>
                     <div class="post-title">Harika bir kaynak buldum, mutlaka bakın!</div>
-                    <div class="post-body">Selamlar, yazılım öğrenirken kullandığım muazzam bir site var: https://github.com adresi üzerinden binlerce projeyi inceleyebilirsiniz. Kesinlikle tavsiye ederim!</div>
+                    <div class="post-body">Selamlar, yazılım öğrenirken kullandığım muazzam bir site var: https://github.com adresi üzerinden binlerce projeyi inceleyebilirsiniz.</div>
                     <div class="post-actions">
                         <button class="action-btn" onclick="handleVote(this, 'up')">🔺 <span class="count">24</span></button>
                         <button class="action-btn" onclick="handleVote(this, 'down')">🔻</button>
@@ -99,7 +98,6 @@
                         <div class="comment-list"></div>
                     </div>
                 </div>
-
             </div>
         </main>
 
