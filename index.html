@@ -13,13 +13,19 @@
             <a href="#" class="logo">🌐 MEGAFORUM</a>
             
             <div class="search-bar">
-                <input type="text" id="forum-search" placeholder="Konularda veya etiketlerde arama yapın...">
+                <input type="text" id="forum-search" placeholder="Konularda arama yapın...">
             </div>
 
             <div class="nav-actions">
+                <select id="language-select" class="lang-dropdown">
+                    <option value="tr">TR 🇹🇷</option>
+                    <option value="en">EN 🇬🇧</option>
+                    <option value="de">DE 🇩🇪</option>
+                </select>
+                
                 <button class="theme-toggle" id="theme-btn" title="Temayı Değiştir">🌙</button>
                 <div class="user-info">
-                    <div class="avatar" style="background-color: var(--accent-color);">U</div>
+                    <div class="avatar">U</div>
                     <span class="username">Kullanici_1</span>
                 </div>
             </div>
@@ -31,13 +37,13 @@
         <aside class="sidebar-left">
             <div class="sidebar-menu">
                 <ul class="menu-list">
-                    <li class="menu-item active"><a href="#">🏠 Ana Sayfa</a></li>
-                    <li class="menu-item"><a href="#">🔥 Popüler Konular</a></li>
-                    <li class="menu-item"><a href="#">⭐ Favorilerim</a></li>
+                    <li class="menu-item active"><a href="#" id="menu-home">🏠 Ana Sayfa</a></li>
+                    <li class="menu-item"><a href="#" id="menu-popular">🔥 Popüler Konular</a></li>
+                    <li class="menu-item"><a href="#" id="menu-favs">⭐ Favorilerim</a></li>
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
-                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#3498db;"></span> Teknoloji</a></li>
-                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#2ecc71;"></span> Yazılım / Kodlama</a></li>
-                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#9b59b6;"></span> Gündem / Yaşam</a></li>
+                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#3498db;"></span> <span id="cat-tech">Teknoloji</span></a></li>
+                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#2ecc71;"></span> <span id="cat-code">Yazılım / Kodlama</span></a></li>
+                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#9b59b6;"></span> <span id="cat-life">Gündem / Yaşam</span></a></li>
                 </ul>
             </div>
         </aside>
@@ -45,11 +51,11 @@
         <main class="feed-container">
             
             <div class="create-post">
-                <h2>✍️ Yeni Konu Paylaş</h2>
-                <div class="uyari-kutusu" id="kufur-uyarisi">🛑 Hata: Yazınızda argo veya küfürlü kelimeler tespit edilmiştir! Lütfen içeriğinizi düzenleyin.</div>
+                <h2 id="form-heading">✍️ Yeni Konu Paylaş</h2>
+                <div class="uyari-kutusu" id="kufur-uyarisi">🛑 Hata: Yazınızda argo veya küfürlü kelimeler tespit edilmiştir!</div>
                 
                 <div class="form-group">
-                    <input type="text" id="post-title-input" class="form-control" placeholder="Konu Başlığı nedir?">
+                    <input type="text" id="post-title-input" class="form-control" placeholder="Konu Başlığı">
                 </div>
                 <div class="form-group">
                     <select id="post-category-input" class="form-control">
@@ -59,7 +65,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea id="post-body-input" class="form-control" rows="4" placeholder="Yardım istediğiniz veya tartışmak istediğiniz konuyu buraya detaylıca yazın..."></textarea>
+                    <textarea id="post-body-input" class="form-control" rows="4" placeholder="Sorununuzu detaylıca açıklayın ve isterseniz link (örn: https://google.com) ekleyin..."></textarea>
                 </div>
                 <button class="btn btn-primary" id="submit-post-btn">Konuyu Oluştur</button>
             </div>
@@ -77,29 +83,20 @@
                         </div>
                         <button class="mod-btn" onclick="this.closest('.post-card').remove()">Sil</button>
                     </div>
-                    <div class="post-title">Python mu yoksa JavaScript mi başlamalıyım?</div>
-                    <div class="post-body">Yazılıma sıfırdan adım atmak istiyorum fakat hangi dilden başlamam gerektiği konusunda kararsız kaldım. Web tasarım da ilgimi çekiyor yapay zeka da. Önerileriniz nelerdir?</div>
+                    <div class="post-title">Harika bir kaynak buldum, mutlaka bakın!</div>
+                    <div class="post-body">Selamlar, yazılım öğrenirken kullandığım muazzam bir site var: https://github.com adresi üzerinden binlerce projeyi inceleyebilirsiniz. Kesinlikle tavsiye ederim!</div>
                     <div class="post-actions">
                         <button class="action-btn" onclick="handleVote(this, 'up')">🔺 <span class="count">24</span></button>
                         <button class="action-btn" onclick="handleVote(this, 'down')">🔻</button>
-                        <button class="action-btn" onclick="toggleComments(this)">💬 Yorumlar (<span class="c-count">2</span>)</button>
+                        <button class="action-btn" onclick="toggleComments(this)">💬 Yorumlar (<span class="c-count">0</span>)</button>
                         <button class="action-btn" onclick="this.classList.toggle('favorited')">⭐</button>
                     </div>
                     <div class="comments-section">
                         <div class="comment-form">
-                            <input type="text" class="form-control" placeholder="Cevabınızı veya yardımınızı yazın...">
+                            <input type="text" class="form-control" placeholder="Cevabınızı yazın...">
                             <button class="btn btn-primary" onclick="addComment(this)">Gönder</button>
                         </div>
-                        <div class="comment-list">
-                            <div class="comment-item">
-                                <div class="comment-meta"><span>@YazilimciKiz</span><span>1 saat önce</span></div>
-                                Web istiyorsan kesinlikle JavaScript ile başla, önü çok açık.
-                            </div>
-                            <div class="comment-item">
-                                <div class="comment-meta"><span>@VeriBilimci</span><span>45 dk önce</span></div>
-                                Yapay zeka daha ağır basıyorsa Python senin için tek seçenek diyebilirim.
-                            </div>
-                        </div>
+                        <div class="comment-list"></div>
                     </div>
                 </div>
 
@@ -108,10 +105,9 @@
 
         <aside class="sidebar-right">
             <div class="sidebar-right-box">
-                <h3>📊 Platform İstatistikleri</h3>
-                <div class="stat-item"><span>Toplam Üye:</span> <strong>12,453</strong></div>
-                <div class="stat-item"><span>Aktif Konular:</span> <strong>3,892</strong></div>
-                <div class="stat-item"><span>Çevrimiçi:</span> <span style="color:var(--success-color); font-weight:bold;">● 412 Üye</span></div>
+                <h3 id="stats-heading">📊 Platform İstatistikleri</h3>
+                <div class="stat-item"><span id="stat-members">Toplam Üye:</span> <strong>12,453</strong></div>
+                <div class="stat-item"><span id="stat-active">Aktif Konular:</span> <strong>3,892</strong></div>
             </div>
         </aside>
 
