@@ -3,183 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hızlı Çeviri Sözlüğü</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            padding: 20px;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 700px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 28px;
-            color: #00f2fe;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .translator-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .translator-box {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .box {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #4facfe;
-        }
-
-        textarea {
-            width: 100%;
-            height: 180px;
-            padding: 15px;
-            border-radius: 8px;
-            border: none;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            font-size: 16px;
-            resize: none;
-            outline: none;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        textarea:focus {
-            border: 2px solid #00f2fe;
-        }
-
-        textarea[readonly] {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            cursor: default;
-        }
-
-        .btn-container {
-            grid-column: 1 / -1;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        button {
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            color: white;
-            border: none;
-            padding: 12px 40px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .status {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #a1c4fd;
-            min-height: 20px;
-        }
-    </style>
+    <title>Mega Yardımlaşma ve Forum Platformu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Çeviri Sözlüğü</h1>
-        
-        <div class="translator-box">
-            <div class="box">
-                <label for="from-text">İngilizce</label>
-                <textarea id="from-text" placeholder="Çevirmek istediğiniz metni buraya yazın..."></textarea>
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">🌐 MEGAFORUM</a>
+            
+            <div class="search-bar">
+                <input type="text" id="forum-search" placeholder="Konularda veya etiketlerde arama yapın...">
             </div>
 
-            <div class="box">
-                <label for="to-text">Türkçe</label>
-                <textarea id="to-text" placeholder="Çeviri burada görünecek..." readonly></textarea>
-            </div>
-
-            <div class="btn-container">
-                <button id="translate-btn">Çevir</button>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-btn" title="Temayı Değiştir">🌙</button>
+                <div class="user-info">
+                    <div class="avatar" style="background-color: var(--accent-color);">U</div>
+                    <span class="username">Kullanici_1</span>
+                </div>
             </div>
         </div>
+    </header>
 
-        <div class="status" id="status-text"></div>
+    <div class="container main-layout">
+        
+        <aside class="sidebar-left">
+            <div class="sidebar-menu">
+                <ul class="menu-list">
+                    <li class="menu-item active"><a href="#">🏠 Ana Sayfa</a></li>
+                    <li class="menu-item"><a href="#">🔥 Popüler Konular</a></li>
+                    <li class="menu-item"><a href="#">⭐ Favorilerim</a></li>
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
+                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#3498db;"></span> Teknoloji</a></li>
+                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#2ecc71;"></span> Yazılım / Kodlama</a></li>
+                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#9b59b6;"></span> Gündem / Yaşam</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="feed-container">
+            
+            <div class="create-post">
+                <h2>✍️ Yeni Konu Paylaş</h2>
+                <div class="uyari-kutusu" id="kufur-uyarisi">🛑 Hata: Yazınızda argo veya küfürlü kelimeler tespit edilmiştir! Lütfen içeriğinizi düzenleyin.</div>
+                
+                <div class="form-group">
+                    <input type="text" id="post-title-input" class="form-control" placeholder="Konu Başlığı nedir?">
+                </div>
+                <div class="form-group">
+                    <select id="post-category-input" class="form-control">
+                        <option value="tech">Teknoloji</option>
+                        <option value="yazilim">Yazılım / Kodlama</option>
+                        <option value="gundem">Gündem / Yaşam</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="post-body-input" class="form-control" rows="4" placeholder="Yardım istediğiniz veya tartışmak istediğiniz konuyu buraya detaylıca yazın..."></textarea>
+                </div>
+                <button class="btn btn-primary" id="submit-post-btn">Konuyu Oluştur</button>
+            </div>
+
+            <div id="forum-feed">
+                
+                <div class="post-card" data-category="yazilim">
+                    <div class="post-header">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: var(--success-color);">K</div>
+                            <div class="user-details">
+                                <div class="username">KodYazanAdam <span class="badge badge-yazilim">Yazılım</span></div>
+                                <div class="meta">2 saat önce paylaşıldı</div>
+                            </div>
+                        </div>
+                        <button class="mod-btn" onclick="this.closest('.post-card').remove()">Sil</button>
+                    </div>
+                    <div class="post-title">Python mu yoksa JavaScript mi başlamalıyım?</div>
+                    <div class="post-body">Yazılıma sıfırdan adım atmak istiyorum fakat hangi dilden başlamam gerektiği konusunda kararsız kaldım. Web tasarım da ilgimi çekiyor yapay zeka da. Önerileriniz nelerdir?</div>
+                    <div class="post-actions">
+                        <button class="action-btn" onclick="handleVote(this, 'up')">🔺 <span class="count">24</span></button>
+                        <button class="action-btn" onclick="handleVote(this, 'down')">🔻</button>
+                        <button class="action-btn" onclick="toggleComments(this)">💬 Yorumlar (<span class="c-count">2</span>)</button>
+                        <button class="action-btn" onclick="this.classList.toggle('favorited')">⭐</button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comment-form">
+                            <input type="text" class="form-control" placeholder="Cevabınızı veya yardımınızı yazın...">
+                            <button class="btn btn-primary" onclick="addComment(this)">Gönder</button>
+                        </div>
+                        <div class="comment-list">
+                            <div class="comment-item">
+                                <div class="comment-meta"><span>@YazilimciKiz</span><span>1 saat önce</span></div>
+                                Web istiyorsan kesinlikle JavaScript ile başla, önü çok açık.
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment-meta"><span>@VeriBilimci</span><span>45 dk önce</span></div>
+                                Yapay zeka daha ağır basıyorsa Python senin için tek seçenek diyebilirim.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="sidebar-right-box">
+                <h3>📊 Platform İstatistikleri</h3>
+                <div class="stat-item"><span>Toplam Üye:</span> <strong>12,453</strong></div>
+                <div class="stat-item"><span>Aktif Konular:</span> <strong>3,892</strong></div>
+                <div class="stat-item"><span>Çevrimiçi:</span> <span style="color:var(--success-color); font-weight:bold;">● 412 Üye</span></div>
+            </div>
+        </aside>
+
     </div>
 
-    <script>
-        const fromText = document.getElementById("from-text");
-        const toText = document.getElementById("to-text");
-        const translateBtn = document.getElementById("translate-btn");
-        const statusText = document.getElementById("status-text");
-
-        translateBtn.addEventListener("click", () => {
-            let text = fromText.value.trim();
-            if (!text) {
-                toText.value = "";
-                return;
-            }
-            
-            statusText.innerText = "Çevriliyor...";
-            
-            // Ücretsiz MyMemory Çeviri API'sini kullanıyoruz (İngilizce'den Türkçe'ye)
-            let apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|tr`;
-
-            fetch(apiUrl)
-                .then(res => res.json())
-                .then(data => {
-                    toText.value = data.responseData.translatedText;
-                    statusText.innerText = "";
-                })
-                .catch(() => {
-                    statusText.innerText = "Çeviri sırasında bir hata oluştu.";
-                });
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
