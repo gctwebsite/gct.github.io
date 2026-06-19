@@ -1,237 +1,328 @@
-const yasakliKelimeler = ["küfür1", "küfür2", "argo1", "aptal", "salak"];
+const yasakliKelimeler = ["küfür1", "küfür2", "argo1"];
 
-// ÇOKLU DİL SÖZLÜĞÜ
+// DÜNYADAKİ TÜM PREMİUM DİLLERİN SÖZLÜĞÜ
 const diller = {
     tr: {
-        search: "Konularda arama yapın...", home: "🏠 Ana Sayfa", popular: "🔥 Popüler Konular",
-        favs: "⭐ Favorilerim", tech: "Teknoloji", code: "Yazılım / Kodlama", life: "Gündem / Yaşam",
-        formHeading: "✍️ Yeni Konu Paylaş", error: "🛑 Hata: Yazınızda argo veya küfürlü kelimeler tespit edilmiştir!",
-        titlePlaceholder: "Konu Başlığı", bodyPlaceholder: "Sorununuzu detaylıca açıklayın...",
-        btnCreate: "Konuyu Oluştur", stats: "📊 Platform İstatistikleri", members: "Toplam Üye:", active: "Aktif Konular:"
+        search: "Evrende arama yapın...", home: "🏠 Ana Sayfa", popular: "🔥 Popüler Konular", favs: "⭐ Favorilerim",
+        tech: "Teknoloji", code: "Yazılım", life: "Gündem", accHeading: "👤 Hesap Oluştur / Değiştir",
+        formHeading: "✍️ Yeni Bir Konu Fırlat", error: "🛑 Argo/Sanal dışı kelime tespit edildi!",
+        titlePlaceholder: "Konu Başlığı", bodyPlaceholder: "Fikirlerini evrene duyur...",
+        btnCreate: "Konuyu Evrene Gönder", myProfile: "📊 Profil Durumun", gStats: "🌐 Global İstatistikler",
+        members: "Toplam Üye:", active: "Aktif Sinyal:", deleteBtn: "Yok Et", following: "Takip Edilen:", followers: "Takipçi:"
     },
     en: {
-        search: "Search in topics...", home: "🏠 Home", popular: "🔥 Popular Topics",
-        favs: "⭐ My Favorites", tech: "Technology", code: "Software / Coding", life: "Agenda / Life",
-        formHeading: "✍️ Share New Topic", error: "🛑 Error: Bad words or slang detected!",
-        titlePlaceholder: "Topic Title", bodyPlaceholder: "Explain your problem...",
-        btnCreate: "Create Topic", stats: "📊 Platform Statistics", members: "Total Members:", active: "Active Topics:"
+        search: "Search across the universe...", home: "🏠 Home", popular: "🔥 Popular", favs: "⭐ Favorites",
+        tech: "Technology", code: "Software", life: "Agenda", accHeading: "👤 Create/Switch Account",
+        formHeading: "✍️ Launch New Topic", error: "🛑 Toxic words detected!",
+        titlePlaceholder: "Topic Title", bodyPlaceholder: "Broadcast your mind...",
+        btnCreate: "Launch to Universe", myProfile: "📊 Profile Stats", gStats: "🌐 Global Stats",
+        members: "Total Members:", active: "Active Signals:", deleteBtn: "Annihilate", following: "Following:", followers: "Followers:"
     },
     de: {
-        search: "Themen durchsuchen...", home: "🏠 Startseite", popular: "🔥 Beliebte Themen",
-        favs: "⭐ Meine Favoriten", tech: "Technologie", code: "Software / Kodierung", life: "Agenda / Leben",
-        formHeading: "✍️ Neues Thema teilen", error: "🛑 Fehler: Schimpfwörter erkannt!",
-        titlePlaceholder: "Thementitel", bodyPlaceholder: "Erklären Sie Ihr Problem...",
-        btnCreate: "Thema erstellen", stats: "📊 Plattform-Statistiken", members: "Gesamtmitglieder:", active: "Aktive Themen:"
+        search: "Suche im Universum...", home: "🏠 Startseite", popular: "🔥 Beliebt", favs: "⭐ Favoriten",
+        tech: "Technologie", code: "Software", life: "Agenda", accHeading: "👤 Konto erstellen",
+        formHeading: "✍️ Neues Thema starten", error: "🛑 Unangemessene Wörter erkannt!",
+        titlePlaceholder: "Thementitel", bodyPlaceholder: "Sende deine Gedanken...",
+        btnCreate: "Ins Universum senden", myProfile: "📊 Profilstatus", gStats: "🌐 Globale Statistiken",
+        members: "Mitglieder gesamt:", active: "Aktive Signale:", deleteBtn: "Löschen", following: "Gefolgt:", followers: "Follower:"
+    },
+    es: {
+        search: "Buscar en el universo...", home: "🏠 Inicio", popular: "🔥 Popular", favs: "⭐ Favoritos",
+        tech: "Tecnología", code: "Software", life: "Agenda", accHeading: "👤 Crear Cuenta",
+        formHeading: "✍️ Lanzar nuevo tema", error: "🛑 ¡Palabras tóxicas detectadas!",
+        titlePlaceholder: "Título", bodyPlaceholder: "Transmite tu mente...",
+        btnCreate: "Lanzar al Universo", myProfile: "📊 Estado del Perfil", gStats: "🌐 Estadísticas Globales",
+        members: "Total Miembros:", active: "Señales Activas:", deleteBtn: "Eliminar", following: "Siguiendo:", followers: "Seguidores:"
+    },
+    zh: {
+        search: "在宇宙中搜索...", home: "🏠 首页", popular: "🔥 热门话题", favs: "⭐ 个人收藏",
+        tech: "技术探索", code: "软件开发", life: "每日生计", accHeading: "👤 账户创建与切换",
+        formHeading: "✍️ 发射新话题", error: "🛑 检测到违规词汇！",
+        titlePlaceholder: "话题标题", bodyPlaceholder: "广播你的思想...",
+        btnCreate: "发射到宇宙", myProfile: "📊 个人状态", gStats: "🌐 全局数据",
+        members: "总会员数:", active: "活跃信号:", deleteBtn: "摧毁", following: "正在关注:", followers: "粉丝数:"
+    },
+    ja: {
+        search: "全宇宙を検索...", home: "🏠 ホーム", popular: "🔥 トレンド", favs: "⭐ お気に入り",
+        tech: "技術", code: "開発", life: "ライフ", accHeading: "👤 アカウント作成・切替",
+        formHeading: "✍️ 新トピック射出", error: "🛑 不適切な表現が含まれています！",
+        titlePlaceholder: "タイトル", bodyPlaceholder: "思考を空間に放て...",
+        btnCreate: "宇宙へポスト", myProfile: "📊 プロファイルステータス", gStats: "🌐 全体統計",
+        members: "総メンバー数:", active: "アクティブシグナル:", deleteBtn: "抹消", following: "フォロー中:", followers: "フォロワー:"
+    },
+    ru: {
+        search: "Поиск по вселенной...", home: "🏠 Главная", popular: "🔥 Популярное", favs: "⭐ Избранное",
+        tech: "Технологии", code: "Софт", life: "Повестка", accHeading: "👤 Создать профиль",
+        formHeading: "✍️ Запустить топик", error: "🛑 Обнаружен запрещенный контент!",
+        titlePlaceholder: "Заголовок темы", bodyPlaceholder: "Транслируйте мысли...",
+        btnCreate: "Запустить во вселенную", myProfile: "📊 Статус профиля", gStats: "🌐 Глобальная статистика",
+        members: "Всего участников:", active: "Активные сигналы:", deleteBtn: "Уничтожить", following: "Подписки:", followers: "Подписчики:"
     }
 };
 
-// DİL DEĞİŞTİRME ETKİNLİĞİ
-const langSelect = document.getElementById("language-select");
-langSelect.addEventListener("change", (e) => {
-    const secilenDil = diller[e.target.value];
-    document.getElementById("forum-search").placeholder = secilenDil.search;
-    document.getElementById("menu-home").innerText = secilenDil.home;
-    document.getElementById("menu-popular").innerText = secilenDil.popular;
-    document.getElementById("menu-favs").innerText = secilenDil.favs;
-    document.getElementById("cat-tech").innerText = secilenDil.tech;
-    document.getElementById("cat-code").innerText = secilenDil.code;
-    document.getElementById("cat-life").innerText = secilenDil.life;
-    document.getElementById("form-heading").innerText = secilenDil.formHeading;
-    document.getElementById("kufur-uyarisi").innerText = secilenDil.error;
-    document.getElementById("post-title-input").placeholder = secilenDil.titlePlaceholder;
-    document.getElementById("post-body-input").placeholder = secilenDil.bodyPlaceholder;
-    document.getElementById("submit-post-btn").innerText = secilenDil.btnCreate;
-    document.getElementById("stats-heading").innerText = secilenDil.stats;
-    document.getElementById("stat-members").innerText = secilenDil.members;
-    document.getElementById("stat-active").innerText = secilenDil.active;
-});
+// AKTİF KULLANICI NESNESİ
+let aktifKullanici = {
+    username: "Matrix_Neo",
+    bio: "Evreni optimize eden bir kodlayıcı.",
+    color: "#00f0ff",
+    following: []
+};
 
-// METİN İÇİNDEKİ LİNKLERİ BULUP OTO TIKLANABİLİR YAPMA
-function linkleriBaglantiyaDonustur(text) {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.replace(urlRegex, function(url) {
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-    });
-}
-
-// TEMA DEGISTIRICI
-const themeBtn = document.getElementById("theme-btn");
-themeBtn.addEventListener("click", () => {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    if (currentTheme === "dark") {
-        document.documentElement.removeAttribute("data-theme");
-        themeBtn.innerText = "🌙";
-    } else {
-        document.documentElement.setAttribute("data-theme", "dark");
-        themeBtn.innerText = "☀️";
+document.addEventListener("DOMContentLoaded", () => {
+    // LocalStorage'dan hesabı geri çağır
+    const kayitliHesap = localStorage.getItem("forum_aktif_hesap");
+    if (kayitliHesap) {
+        aktifKullanici = JSON.parse(kayitliHesap);
     }
-});
-
-function toggleComments(btn) {
-    const postCard = btn.closest(".post-card");
-    const commentSection = postCard.querySelector(".comments-section");
-    commentSection.style.display = (commentSection.style.display === "block") ? "none" : "block";
-}
-
-function handleVote(btn, type) {
-    const parent = btn.parentElement;
-    const upBtn = parent.children[0];
-    const downBtn = parent.children[1];
-    const countSpan = upBtn.querySelector(".count");
-    let currentCount = parseInt(countSpan.innerText);
-
-    if (type === 'up') {
-        if (upBtn.classList.contains('upvoted')) {
-            upBtn.classList.remove('upvoted');
-            countSpan.innerText = currentCount - 1;
-        } else {
-            if (downBtn.classList.contains('downvoted')) downBtn.classList.remove('downvoted');
-            upBtn.classList.add('upvoted');
-            countSpan.innerText = currentCount + 1;
-        }
-    } else if (type === 'down') {
-        if (downBtn.classList.contains('downvoted')) {
-            downBtn.classList.remove('downvoted');
-        } else {
-            if (upBtn.classList.contains('upvoted')) {
-                upBtn.classList.remove('upvoted');
-                countSpan.innerText = currentCount - 1;
-            }
-            downBtn.classList.add('downvoted');
-        }
-    }
-}
-
-function addComment(btn) {
-    const commentForm = btn.parentElement;
-    const input = commentForm.querySelector("input");
-    const commentList = commentForm.nextElementSibling;
-    const countText = commentForm.parentElement.parentElement.querySelector(".c-count");
     
-    let text = input.value.trim();
-    if (!text) return;
+    // Varsayılan input alanlarını doldur
+    document.getElementById("acc-username").value = aktifKullanici.username;
+    document.getElementById("acc-bio").value = aktifKullanici.bio;
+    document.getElementById("acc-avatar-color").value = aktifKullanici.color;
 
-    let temizMetin = text.toLowerCase();
-    let icerikTemizMi = true;
-    yasakliKelimeler.forEach(kelime => {
-        if (temizMetin.includes(kelime)) icerikTemizMi = false;
-    });
+    profilArayuzunuGuncelle();
+    postlariYukle();
+    
+    const kayitliDil = localStorage.getItem("forum_dil") || "tr";
+    document.getElementById("language-select").value = kayitliDil;
+    dilDegistir(kayitliDil);
+});
 
-    if (!icerikTemizMi) {
-        alert("Uygunsuz içerik engellendi!");
-        return;
-    }
+// HESAP SİSTEMİNİ KAYDETME VE GÜNCELLEME
+document.getElementById("btn-save-account").addEventListener("click", () => {
+    const uName = document.getElementById("acc-username").value.trim();
+    const uBio = document.getElementById("acc-bio").value.trim();
+    const uColor = document.getElementById("acc-avatar-color").value;
 
-    let guvenliYorum = escapeHTML(text);
-    let linkliYorum = linkleriBaglantiyaDonustur(guvenliYorum);
+    if (!uName) return alert("Kullanıcı adı boş bırakılamaz!");
 
-    const yeniYorum = document.createElement("div");
-    yeniYorum.classList.add("comment-item");
-    yeniYorum.innerHTML = `
-        <div class="comment-meta"><span>@Kullanici_1</span><span>Şimdi</span></div>
-        ${linkliYorum}
-    `;
+    aktifKullanici.username = uName;
+    aktifKullanici.bio = uBio || "Sistem sakini.";
+    aktifKullanici.color = uColor;
 
-    commentList.appendChild(yeniYorum);
-    countText.innerText = parseInt(countText.innerText) + 1;
-    input.value = "";
+    localStorage.setItem("forum_aktif_hesap", JSON.stringify(aktifKullanici));
+    profilArayuzunuGuncelle();
+    postlariYukle(); // Gönderilerdeki ismini ve renklerini dinamik tazelemek için
+    alert("Hesap senkronizasyonu tamamlandı!");
+});
+
+function profilArayuzunuGuncelle() {
+    const ilkHarf = aktifKullanici.username.charAt(0).toUpperCase();
+    
+    // Navigasyon Güncelleme
+    document.getElementById("nav-avatar").innerText = ilkHarf;
+    document.getElementById("nav-avatar").style.backgroundColor = aktifKullanici.color;
+    document.getElementById("nav-username").innerText = aktifKullanici.username;
+
+    // Sağ Panel Profil Kartı Güncelleme
+    document.getElementById("stats-avatar").innerText = ilkHarf;
+    document.getElementById("stats-avatar").style.backgroundColor = aktifKullanici.color;
+    document.getElementById("stats-avatar").style.boxShadow = `0 0 20px ${aktifKullanici.color}`;
+    document.getElementById("stats-username").innerText = aktifKullanici.username;
+    document.getElementById("stats-bio").innerText = aktifKullanici.bio;
+    document.getElementById("user-following-count").innerText = aktifKullanici.following.length;
 }
 
-// YENİ KONU EKLEME
-const submitPostBtn = document.getElementById("submit-post-btn");
-const postTitleInput = document.getElementById("post-title-input");
-const postCategoryInput = document.getElementById("post-category-input");
-const postBodyInput = document.getElementById("post-body-input");
-const kufurUyarisi = document.getElementById("kufur-uyarisi");
-const forumFeed = document.getElementById("forum-feed");
+// TAKİP ETME MOTORU
+function takipEt(hedefUser, btn) {
+    if (hedefUser === aktifKullanici.username) return alert("Kendini takip edemezsin, evren döngüye girer!");
 
-submitPostBtn.addEventListener("click", () => {
-    const baslik = postTitleInput.value.trim();
-    const kategori = postCategoryInput.value;
-    const icerik = postBodyInput.value.trim();
-
-    if (!baslik || !icerik) {
-        alert("Lütfen tüm alanları doldurun!");
-        return;
+    const index = aktifKullanici.following.indexOf(hedefUser);
+    if (index > -1) {
+        aktifKullanici.following.splice(index, 1);
+        btn.innerText = "Takip Et";
+        btn.classList.remove("following");
+    } else {
+        aktifKullanici.following.push(hedefUser);
+        btn.innerText = "Takip Ediliyor";
+        btn.classList.add("following");
     }
 
-    const tamMetin = (baslik + " " + icerik).toLowerCase();
-    let kontrolTemizMi = true;
-    yasakliKelimeler.forEach(kelime => {
-        if (tamMetin.includes(kelime)) kontrolTemizMi = false;
-    });
+    localStorage.setItem("forum_aktif_hesap", JSON.stringify(aktifKullanici));
+    document.getElementById("user-following-count").innerText = aktifKullanici.following.length;
+}
 
-    if (!kontrolTemizMi) {
-        kufurUyarisi.style.display = "block";
-        return;
-    }
+// YENİ KONU BAŞLATMA
+document.getElementById("submit-post-btn").addEventListener("click", () => {
+    const tInput = document.getElementById("post-title-input");
+    const cInput = document.getElementById("post-category-input");
+    const bInput = document.getElementById("post-body-input");
+    const uyarici = document.getElementById("kufur-uyarisi");
 
-    kufurUyarisi.style.display = "none";
+    const baslik = tInput.value.trim();
+    const icerik = bInput.value.trim();
 
-    let badgeClass = "badge-gundem", badgeText = "Gündem", avatarColor = "var(--accent-color)";
-    if (kategori === "tech") { badgeClass = "badge-tech"; badgeText = "Teknoloji"; avatarColor = "var(--primary-color)"; }
-    if (kategori === "yazilim") { badgeClass = "badge-yazilim"; badgeText = "Yazılım"; avatarColor = "var(--success-color)"; }
+    if (!baslik || !icerik) return alert("Alanlar boş bırakılamaz!");
 
-    let guvenliIcerik = escapeHTML(icerik);
-    let linkliIcerik = linkleriBaglantiyaDonustur(guvenliIcerik);
+    const tarama = (baslik + " " + icerik).toLowerCase();
+    let temiz = true;
+    yasakliKelimeler.forEach(k => { if(tarama.includes(k)) temiz = false; });
 
-    const yeniPost = document.createElement("div");
-    yeniPost.classList.add("post-card");
-    yeniPost.setAttribute("data-category", kategori);
+    if(!temiz) { uyarici.style.display = "block"; return; }
+    uyarici.style.display = "none";
 
-    yeniPost.innerHTML = `
+    const yeniPost = {
+        id: Date.now(),
+        baslik: baslik,
+        icerik: icerik,
+        kategori: cInput.value,
+        yazar: aktifKullanici.username,
+        yazarRenk: aktifKullanici.color,
+        oy: 0,
+        favori: false,
+        yorumlar: []
+    };
+
+    const veri = JSON.parse(localStorage.getItem("cyber_posts")) || [];
+    veri.unshift(yeniPost);
+    localStorage.setItem("cyber_posts", JSON.stringify(veri));
+
+    postEkranaBas(yeniPost);
+    tInput.value = ""; bInput.value = "";
+    dilDegistir(document.getElementById("language-select").value);
+});
+
+function postEkranaBas(post) {
+    const feed = document.getElementById("forum-feed");
+    let bClass = "badge-gundem", bText = "Gündem";
+    if(post.kategori === "tech") { bClass = "badge-tech"; bText = "Teknoloji"; }
+    if(post.kategori === "yazilim") { bClass = "badge-yazilim"; bText = "Yazılım"; }
+
+    const isFollowing = aktifKullanici.following.includes(post.yazar) ? "following" : "";
+    const followText = aktifKullanici.following.includes(post.yazar) ? "Takip Ediliyor" : "Takip Et";
+
+    const kart = document.createElement("div");
+    kart.classList.add("post-card");
+    kart.setAttribute("data-id", post.id);
+    kart.innerHTML = `
         <div class="post-header">
             <div class="user-info">
-                <div class="avatar" style="background-color: ${avatarColor};">U</div>
+                <div class="avatar" style="background-color:${post.yazarRenk}">${post.yazar.charAt(0).toUpperCase()}</div>
                 <div class="user-details">
-                    <div class="username">Kullanici_1 <span class="badge ${badgeClass}">${badgeText}</span></div>
-                    <div class="meta">Şimdi paylaşıldı</div>
+                    <div class="username">${escapeHTML(post.yazar)} <span class="badge ${bClass}">${bText}</span></div>
+                    <div class="meta">Sinyal Aktif</div>
                 </div>
+                <button class="btn follow-btn ${isFollowing}" onclick="takipEt('${escapeHTML(post.yazar)}', this)">${followText}</button>
             </div>
-            <button class="mod-btn" onclick="this.closest('.post-card').remove()">Sil</button>
+            <button class="mod-btn" onclick="postYokEt(${post.id}, this)">Yok Et</button>
         </div>
-        <div class="post-title">${escapeHTML(baslik)}</div>
-        <div class="post-body">${linkliIcerik}</div>
+        <div class="post-title">${escapeHTML(post.baslik)}</div>
+        <div class="post-body">${linkleriBaglantiyaDonustur(escapeHTML(post.icerik))}</div>
         <div class="post-actions">
-            <button class="action-btn" onclick="handleVote(this, 'up')">🔺 <span class="count">0</span></button>
-            <button class="action-btn" onclick="handleVote(this, 'down')">🔻</button>
-            <button class="action-btn" onclick="toggleComments(this)">💬 Yorumlar (<span class="c-count">0</span>)</button>
-            <button class="action-btn" onclick="this.classList.toggle('favorited')">⭐</button>
+            <button class="action-btn" onclick="oyla(${post.id}, this)">🔺 <span class="count">${post.oy}</span></button>
+            <button class="action-btn" onclick="toggleYorumlar(this)">💬 Yorumlar (${post.yorumlar.length})</button>
+            <button class="action-btn ${post.favori?'favorited':''}" onclick="favoriYap(${post.id}, this)">⭐</button>
         </div>
         <div class="comments-section">
             <div class="comment-form">
-                <input type="text" class="form-control" placeholder="Cevabınızı yazın...">
-                <button class="btn btn-primary" onclick="addComment(this)">Gönder</button>
+                <input type="text" class="form-control" placeholder="Alt yorum satırı...">
+                <button class="btn btn-primary" style="width:auto;" onclick="yorumAt(${post.id}, this)">Gönder</button>
             </div>
-            <div class="comment-list"></div>
+            <div class="comment-list">
+                ${post.yorumlar.map(c => `<div class="comment-item"><strong>${escapeHTML(c.kim)}:</strong> ${escapeHTML(c.ne)}</div>`).join('')}
+            </div>
         </div>
     `;
+    feed.insertBefore(kart, feed.firstChild);
+}
 
-    forumFeed.insertBefore(yeniPost, forumFeed.firstChild);
-    postTitleInput.value = "";
-    postBodyInput.value = "";
-});
+function postlariYukle() {
+    document.getElementById("forum-feed").innerHTML = "";
+    const veri = JSON.parse(localStorage.getItem("cyber_posts")) || [];
+    veri.reverse().forEach(p => postEkranaBas(p));
+}
 
-// ARAMA MOTORU
-const searchInput = document.getElementById("forum-search");
-searchInput.addEventListener("input", (e) => {
-    const arananKelime = e.target.value.toLowerCase();
-    const postlar = forumFeed.querySelectorAll(".post-card");
+function postYokEt(id, btn) {
+    let veri = JSON.parse(localStorage.getItem("cyber_posts")) || [];
+    veri = veri.filter(p => p.id !== id);
+    localStorage.setItem("cyber_posts", JSON.stringify(veri));
+    btn.closest(".post-card").remove();
+}
 
-    postlar.forEach(post => {
-        const baslik = post.querySelector(".post-title").innerText.toLowerCase();
-        const icerik = post.querySelector(".post-body").innerText.toLowerCase();
-        
-        if (baslik.includes(arananKelime) || icerik.includes(arananKelime)) {
-            post.style.display = "block";
-        } else {
-            post.style.display = "none";
+function oyla(id, btn) {
+    let veri = JSON.parse(localStorage.getItem("cyber_posts")) || [];
+    const span = btn.querySelector(".count");
+    veri.forEach(p => {
+        if(p.id === id) { p.oy += 1; span.innerText = p.oy; btn.classList.add("upvoted"); }
+    });
+    localStorage.setItem("cyber_posts", JSON.stringify(veri));
+}
+
+function favoriYap(id, btn) {
+    let veri = JSON.parse(localStorage.getItem("cyber_posts")) || [];
+    veri.forEach(p => {
+        if(p.id === id) { p.favori = !p.favori; btn.classList.toggle("favorited"); }
+    });
+    localStorage.setItem("cyber_posts", JSON.stringify(veri));
+}
+
+function yorumAt(id, btn) {
+    const inp = btn.parentElement.querySelector("input");
+    const txt = inp.value.trim();
+    if(!txt) return;
+
+    let veri = JSON.parse(localStorage.getItem("cyber_posts")) || [];
+    veri.forEach(p => {
+        if(p.id === id) {
+            p.yorumlar.push({ kim: aktifKullanici.username, ne: txt });
+            const list = btn.closest(".comments-section").querySelector(".comment-list");
+            list.innerHTML += `<div class="comment-item"><strong>${escapeHTML(aktifKullanici.username)}:</strong> ${escapeHTML(txt)}</div>`;
         }
     });
+    localStorage.setItem("cyber_posts", JSON.stringify(veri));
+    inp.value = "";
+}
+
+function toggleYorumlar(btn) {
+    const sec = btn.closest(".post-card").querySelector(".comments-section");
+    sec.style.display = (sec.style.display === "block") ? "none" : "block";
+}
+
+// ENGINE TOOLS
+function linkleriBaglantiyaDonustur(t) { return t.replace(/(https?:\/\/[^\s]+)/g, url => `<a href="${url}" target="_blank">${url}</a>`); }
+function escapeHTML(t) { return t.replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+// THEME SYSTEM
+document.getElementById("theme-btn").addEventListener("click", () => {
+    const mode = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", mode);
+    document.getElementById("theme-btn").innerText = mode === "light" ? "☀️" : "🌙";
 });
 
-function escapeHTML(text) {
-    return text
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-                               }
+// DİL ÇEVİRİ MOTORU
+function dilDegistir(d) {
+    const slc = diller[d];
+    localStorage.setItem("forum_dil", d);
+    document.getElementById("forum-search").placeholder = slc.search;
+    document.getElementById("menu-home").innerText = slc.home;
+    document.getElementById("menu-popular").innerText = slc.popular;
+    document.getElementById("menu-favs").innerText = slc.favs;
+    document.getElementById("cat-tech").innerText = slc.tech;
+    document.getElementById("cat-code").innerText = slc.code;
+    document.getElementById("cat-life").innerText = slc.life;
+    document.getElementById("acc-heading").innerText = slc.accHeading;
+    document.getElementById("form-heading").innerText = slc.formHeading;
+    document.getElementById("kufur-uyarisi").innerText = slc.error;
+    document.getElementById("post-title-input").placeholder = slc.titlePlaceholder;
+    document.getElementById("post-body-input").placeholder = slc.bodyPlaceholder;
+    document.getElementById("submit-post-btn").innerText = slc.btnCreate;
+    document.getElementById("my-profile-heading").innerText = slc.myProfile;
+    document.getElementById("stats-heading").innerText = slc.gStats;
+    document.getElementById("stat-members").innerHTML = slc.members + " <strong>99,821</strong>";
+    document.getElementById("stat-active").innerHTML = slc.active + " <strong>4,112</strong>";
+    document.getElementById("lbl-following").innerText = slc.following;
+    document.getElementById("lbl-followers").innerText = slc.followers;
+    document.querySelectorAll(".mod-btn").forEach(b => b.innerText = slc.deleteBtn);
+}
+document.getElementById("language-select").addEventListener("change", (e) => dilDegistir(e.target.value));
+
+// CANLI ARAMA MOTORU
+document.getElementById("forum-search").addEventListener("input", (e) => {
+    const val = e.target.value.toLowerCase();
+    document.querySelectorAll(".post-card").forEach(p => {
+        const title = p.querySelector(".post-title").innerText.toLowerCase();
+        const body = p.querySelector(".post-body").innerText.toLowerCase();
+        p.style.display = (title.includes(val) || body.includes(val)) ? "block" : "none";
+    });
+});
+                   
