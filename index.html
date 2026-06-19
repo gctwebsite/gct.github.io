@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Yardımlaşma ve Forum Platformu</title>
+    <title>MEGAFORUM: Neon Sürüm</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">🌐 MEGAFORUM</a>
+            <a href="#" class="logo">⚡ MEGA<span>FORUM</span></a>
             
             <div class="search-bar">
-                <input type="text" id="forum-search" placeholder="Konularda arama yapın...">
+                <input type="text" id="forum-search" placeholder="Evrende arama yapın...">
             </div>
 
             <div class="nav-actions">
@@ -21,12 +21,17 @@
                     <option value="tr">TR 🇹🇷</option>
                     <option value="en">EN 🇬🇧</option>
                     <option value="de">DE 🇩🇪</option>
+                    <option value="es">ES 🇪🇸</option>
+                    <option value="zh">ZH 🇨🇳</option>
+                    <option value="ja">JA 🇯🇵</option>
+                    <option value="ru">RU 🇷🇺</option>
                 </select>
                 
-                <button class="theme-toggle" id="theme-btn" title="Temayı Değiştir">🌙</button>
-                <div class="user-info">
-                    <div class="avatar">U</div>
-                    <span class="username">Kullanici_1</span>
+                <button class="theme-toggle" id="theme-btn">🌙</button>
+                
+                <div class="active-user-badge" id="active-user-display">
+                    <div class="avatar" id="nav-avatar">?</div>
+                    <span id="nav-username">Misafir</span>
                 </div>
             </div>
         </div>
@@ -35,24 +40,43 @@
     <div class="container main-layout">
         
         <aside class="sidebar-left">
+            <div class="neon-box account-box">
+                <h3 id="acc-heading">👤 Hesap Oluştur / Değiştir</h3>
+                <div class="form-group">
+                    <input type="text" id="acc-username" class="form-control" placeholder="Kullanıcı Adı">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="acc-bio" class="form-control" placeholder="Kısa Bio (Örn: Kod Avcısı)">
+                </div>
+                <div class="form-group">
+                    <select id="acc-avatar-color" class="form-control">
+                        <option value="#ff007f">Pembe Neon</option>
+                        <option value="#00f0ff">Mavi Neon</option>
+                        <option value="#39ff14">Yeşil Neon</option>
+                        <option value="#ffb300">Altın Neon</option>
+                    </select>
+                </div>
+                <button class="btn btn-neon-green" id="btn-save-account">Hesabı Aktif Et</button>
+            </div>
+
             <div class="sidebar-menu">
                 <ul class="menu-list">
                     <li class="menu-item active"><a href="#" id="menu-home">🏠 Ana Sayfa</a></li>
                     <li class="menu-item"><a href="#" id="menu-popular">🔥 Popüler Konular</a></li>
                     <li class="menu-item"><a href="#" id="menu-favs">⭐ Favorilerim</a></li>
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
-                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#3498db;"></span> <span id="cat-tech">Teknoloji</span></a></li>
-                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#2ecc71;"></span> <span id="cat-code">Yazılım / Kodlama</span></a></li>
-                    <li class="menu-item"><a href="#"><span class="category-tag" style="background-color:#9b59b6;"></span> <span id="cat-life">Gündem / Yaşam</span></a></li>
+                    <hr class="neon-hr">
+                    <li class="menu-item"><a href="#"><span class="category-tag bg-tech"></span> <span id="cat-tech">Teknoloji</span></a></li>
+                    <li class="menu-item"><a href="#"><span class="category-tag bg-code"></span> <span id="cat-code">Yazılım</span></a></li>
+                    <li class="menu-item"><a href="#"><span class="category-tag bg-life"></span> <span id="cat-life">Gündem</span></a></li>
                 </ul>
             </div>
         </aside>
 
         <main class="feed-container">
             
-            <div class="create-post">
-                <h2 id="form-heading">✍️ Yeni Konu Paylaş</h2>
-                <div class="uyari-kutusu" id="kufur-uyarisi">🛑 Hata: Yazınızda argo veya küfürlü kelimeler tespit edilmiştir!</div>
+            <div class="neon-box create-post">
+                <h2 id="form-heading">✍️ Yeni Bir Konu Fırlat</h2>
+                <div class="uyari-kutusu" id="kufur-uyarisi">🛑 Argo/Sanal dışı kelime tespit edildi!</div>
                 
                 <div class="form-group">
                     <input type="text" id="post-title-input" class="form-control" placeholder="Konu Başlığı">
@@ -65,47 +89,30 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea id="post-body-input" class="form-control" rows="4" placeholder="Sorununuzu detaylıca açıklayın..."></textarea>
+                    <textarea id="post-body-input" class="form-control" rows="4" placeholder="Fikirlerini evrene duyur, linkler otomatik dönüşür..."></textarea>
                 </div>
-                <button class="btn btn-primary" id="submit-post-btn">Konuyu Oluştur</button>
+                <button class="btn btn-primary" id="submit-post-btn">Konuyu Evrene Gönder</button>
             </div>
 
-            <div id="forum-feed">
-                <div class="post-card" data-category="yazilim">
-                    <div class="post-header">
-                        <div class="user-info">
-                            <div class="avatar" style="background-color: var(--success-color);">K</div>
-                            <div class="user-details">
-                                <div class="username">KodYazanAdam <span class="badge badge-yazilim">Yazılım</span></div>
-                                <div class="meta">2 saat önce paylaşıldı</div>
-                            </div>
-                        </div>
-                        <button class="mod-btn" onclick="this.closest('.post-card').remove()">Sil</button>
-                    </div>
-                    <div class="post-title">Harika bir kaynak buldum, mutlaka bakın!</div>
-                    <div class="post-body">Selamlar, yazılım öğrenirken kullandığım muazzam bir site var: https://github.com adresi üzerinden binlerce projeyi inceleyebilirsiniz.</div>
-                    <div class="post-actions">
-                        <button class="action-btn" onclick="handleVote(this, 'up')">🔺 <span class="count">24</span></button>
-                        <button class="action-btn" onclick="handleVote(this, 'down')">🔻</button>
-                        <button class="action-btn" onclick="toggleComments(this)">💬 Yorumlar (<span class="c-count">0</span>)</button>
-                        <button class="action-btn" onclick="this.classList.toggle('favorited')">⭐</button>
-                    </div>
-                    <div class="comments-section">
-                        <div class="comment-form">
-                            <input type="text" class="form-control" placeholder="Cevabınızı yazın...">
-                            <button class="btn btn-primary" onclick="addComment(this)">Gönder</button>
-                        </div>
-                        <div class="comment-list"></div>
-                    </div>
-                </div>
-            </div>
+            <div id="forum-feed"></div>
         </main>
 
         <aside class="sidebar-right">
-            <div class="sidebar-right-box">
-                <h3 id="stats-heading">📊 Platform İstatistikleri</h3>
-                <div class="stat-item"><span id="stat-members">Toplam Üye:</span> <strong>12,453</strong></div>
-                <div class="stat-item"><span id="stat-active">Aktif Konular:</span> <strong>3,892</strong></div>
+            <div class="neon-box profile-stats-box">
+                <h3 id="my-profile-heading">📊 Profil Durumun</h3>
+                <div class="profile-preview">
+                    <div class="avatar large-avatar" id="stats-avatar">?</div>
+                    <h4 id="stats-username">Misafir</h4>
+                    <p id="stats-bio">Henüz hesap oluşturulmadı.</p>
+                </div>
+                <div class="stat-item"><span id="lbl-following">Takip Edilen:</span> <strong id="user-following-count">0</strong></div>
+                <div class="stat-item"><span id="lbl-followers">Takipçi:</span> <strong id="user-followers-count">42</strong></div>
+            </div>
+
+            <div class="neon-box global-stats-box">
+                <h3 id="stats-heading">🌐 Global İstatistikler</h3>
+                <div class="stat-item"><span id="stat-members">Toplam Üye:</span> <strong>99,821</strong></div>
+                <div class="stat-item"><span id="stat-active">Aktif Sinyal:</span> <strong>4,112</strong></div>
             </div>
         </aside>
 
