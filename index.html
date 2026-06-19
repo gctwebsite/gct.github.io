@@ -3,138 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime İzleme Platformu</title>
+    <title>Hızlı Çeviri Sözlüğü</title>
     <style>
-        /* Genel Sayfa Tasarımı */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0c10;
-            color: #c5c6c7;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Header / Üst Menü */
-        header {
-            background-color: #1f2833;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid #66fcf1;
-        }
-
-        header h1 {
-            margin: 0;
-            color: #66fcf1;
-            font-size: 28px;
-        }
-
-        /* Anime Listesi Alanı */
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .anime-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 25px;
-        }
-
-        /* Anime Kart Tasarımı */
-        .anime-kart {
-            background-color: #1f2833;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .anime-kart:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(102, 252, 241, 0.3);
-        }
-
-        .anime-kart img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-        }
-
-        .anime-detay {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .anime-detay h3 {
-            margin: 0 0 10px 0;
-            font-size: 16px;
+            justify-content: center;
+            align-items: center;
             color: #fff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* İzleme Butonu */
-        .izle-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 10px 0;
-            background-color: #45f3ff;
-            color: #0b0c10;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .izle-btn:hover {
-            background-color: #66fcf1;
-        }
-
-        footer {
-            text-align: center;
             padding: 20px;
-            background-color: #1f2833;
-            margin-top: 50px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #00f2fe;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .translator-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .translator-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #4facfe;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        textarea:focus {
+            border: 2px solid #00f2fe;
+        }
+
+        textarea[readonly] {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: default;
+        }
+
+        .btn-container {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 15px;
             font-size: 14px;
+            color: #a1c4fd;
+            min-height: 20px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Anime Film & Dizi Arşivi</h1>
-    </header>
-
     <div class="container">
-        <div class="anime-grid">
-
-            <div class="anime-kart">
-                <img src="https://via.placeholder.com/200x280" alt="Anime Adı 1" loading="lazy">
-                <div class="anime-detay">
-                    <h3>Anime Başlığı 1</h3>
-                    <a href="izle-linki-1.html" class="izle-btn">Şimdi İzle</a>
-                </div>
+        <h1>Çeviri Sözlüğü</h1>
+        
+        <div class="translator-box">
+            <div class="box">
+                <label for="from-text">İngilizce</label>
+                <textarea id="from-text" placeholder="Çevirmek istediğiniz metni buraya yazın..."></textarea>
             </div>
 
-            <div class="anime-kart">
-                <img src="https://via.placeholder.com/200x280" alt="Anime Adı 2" loading="lazy">
-                <div class="anime-detay">
-                    <h3>Anime Başlığı 2</h3>
-                    <a href="izle-linki-2.html" class="izle-btn">Şimdi İzle</a>
-                </div>
+            <div class="box">
+                <label for="to-text">Türkçe</label>
+                <textarea id="to-text" placeholder="Çeviri burada görünecek..." readonly></textarea>
             </div>
 
+            <div class="btn-container">
+                <button id="translate-btn">Çevir</button>
             </div>
+        </div>
+
+        <div class="status" id="status-text"></div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
-    </footer>
+    <script>
+        const fromText = document.getElementById("from-text");
+        const toText = document.getElementById("to-text");
+        const translateBtn = document.getElementById("translate-btn");
+        const statusText = document.getElementById("status-text");
+
+        translateBtn.addEventListener("click", () => {
+            let text = fromText.value.trim();
+            if (!text) {
+                toText.value = "";
+                return;
+            }
+            
+            statusText.innerText = "Çevriliyor...";
+            
+            // Ücretsiz MyMemory Çeviri API'sini kullanıyoruz (İngilizce'den Türkçe'ye)
+            let apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|tr`;
+
+            fetch(apiUrl)
+                .then(res => res.json())
+                .then(data => {
+                    toText.value = data.responseData.translatedText;
+                    statusText.innerText = "";
+                })
+                .catch(() => {
+                    statusText.innerText = "Çeviri sırasında bir hata oluştu.";
+                });
+        });
+    </script>
 
 </body>
 </html>
